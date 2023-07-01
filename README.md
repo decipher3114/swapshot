@@ -20,9 +20,9 @@ curl -sL "https://raw.githubusercontent.com/decipher3114/swapshot/main/setup.sh"
 ### Swapshot Gnome Keybindings
 | Key     | Mode               |
 |---------|--------------------|
-| Alt + F | FullScreen Mode    |
-| Alt + S | Selected Area Mode |
-| Alt + W | Window Mode        |
+| Win(Super) + Shift + S | FullScreen Mode    |
+| Win(Super) + Shift + A | Selected Area Mode |
+| Win(Super) + Shift + W | Window Mode        |
 
 ### Swappy 
 | Key      | Mode                  |
@@ -30,7 +30,7 @@ curl -sL "https://raw.githubusercontent.com/decipher3114/swapshot/main/setup.sh"
 | Ctrl + C | Copy                  |
 | Ctrl + S | Save (Default Action) |
 | q or Esc | Exit with Saving      |
-| [Check all keybindings here](https://github.com/jtheoof/swappy#keyboard-shortcuts) |
+#### [Check all keybindings here](https://github.com/jtheoof/swappy#keyboard-shortcuts)
 
 
 ## Usage
