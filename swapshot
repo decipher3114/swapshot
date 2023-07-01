@@ -1,0 +1,67 @@
+#!/usr/bin/bash
+
+TMP="$HOME/Screenshots/tmp"
+NAME="$(date +%Y-%m-%d_%H-%M-%S)"
+
+help() {
+    echo -e "Usage: swapshot [OPTION]
+    Options:
+    -f          Take Full Screenshot
+    -a          Allow Area Selection
+    -w          Take Current Window Screenshot
+    -i          Run in Interactive mode
+    -h          Prints help statement"
+    exit "$1"
+}
+
+flag=""
+if ! ARGS=$(getopt -o fawh -- "$@"); then
+    help 1
+fi
+eval set -- "$ARGS"
+while [ $# -gt 0 ]
+do
+    case "$1" in
+    "-f")
+                        flag=""
+                        ;;
+    "-a")
+                        flag="-a"
+                        ;;
+    "-w")
+                        flag="-w"
+                        ;;
+    "-i" | "--offline")
+                        flag="-i"
+                        ;;
+    "--")
+        shift
+        break
+        ;;
+    esac
+    shift
+done
+
+checkcmd() {
+    if ! command -v "$1" &> /dev/null; then
+        echo "$1 not found !!"
+        exit 1
+    fi
+}
+
+checkcmd "swappy"
+checkcmd "gnome-screenshot"
+checkcmd "wl-copy"
+
+gnome-screenshot "$flag" -f "$TMP/$NAME.png"
+if [ ! -f "$TMP/$NAME.png" ]; then
+    echo "Screenshot Cancelled !!"
+    exit 1
+fi
+swappy -f "$TMP/$NAME.png" -o "$HOME/Screenshots/swapshot_$NAME.png"
+rm -f "$TMP/$NAME.png"
+
+echo "Screenshot saved to $HOME/Screenshots/swapshot_$NAME.png"
+
+killall -q swappy
+killall -q gnome-screenshot
